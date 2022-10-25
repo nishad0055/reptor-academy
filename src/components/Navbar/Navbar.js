@@ -73,8 +73,8 @@ const Navbar = () => {
            {
             user?.uid ? 
             <>
-            <p>{user?.photoURL ? user?.photoURL : <FaUser></FaUser> }</p>
-            <button onClick={handlelogOut} >Logout</button>
+            <p>{user?.photoURL ? <img className='h-[40px] rounded-full' src= {user?.photoURL} alt="" /> : <FaUser></FaUser> }</p>
+            <button className='' onClick={handlelogOut} >Logout</button>
             </>
             :
             <>
@@ -177,24 +177,32 @@ const Navbar = () => {
                           About us
                         </Link>
                       </li>
-                    <li>
-                        <Link
-                           to ='/login'
-                            className="inline-flex items-center justify-center h-12 font-medium tracking-wide text-orange-500 transition duration-200" 
-                        >
-                         Login
-                        </Link>
-                    </li>
-                      <li>
-                        <Link
-                          to="/register"
-                          className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-yellow-400 hover:bg-yellow-600 focus:shadow-outline focus:outline-none"
-                          aria-label="Sign up"
-                          title="Sign up"
-                        >
-                          Sign up
-                        </Link>
-                      </li>
+                      {
+            user?.uid ? 
+            <>
+            <p>{user?.photoURL ? <img className='h-[40px] rounded-full' src= {user?.photoURL} alt="" /> : <FaUser></FaUser> }</p>
+            <button onClick={handlelogOut} >Logout</button>
+            </>
+            :
+            <>
+             <li>
+              <Link
+                to='/login'
+                className="inline-flex items-center justify-center h-12 px-4 font-medium tracking-wide text-orange-500 transition duration-200" 
+              >
+                Login
+              </Link>
+            </li>
+            <li>
+              <Link
+                to= '/register'
+                className="inline-flex items-center justify-center h-9 px-6 font-medium tracking-wide text-white transition duration-200 rounded-2xl bg-yellow-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+              >
+                Sign up
+              </Link>
+            </li>
+            </>
+           }
                     </ul>
                   </nav>
                 </div>
