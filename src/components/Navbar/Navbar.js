@@ -1,9 +1,23 @@
 import React from 'react';
+import { useContext } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider/AuthProvider';
+import { FaUser } from 'react-icons/fa'
 
 const Navbar = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const {user, logOut} = useContext(AuthContext)
+
+  const handlelogOut = () =>{
+    logOut()
+    .then(()=>{
+
+    })
+    .catch(e=> console.error(e))
+  }
+
+    
     return (
         <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div className="relative flex items-center justify-between">
@@ -55,7 +69,16 @@ const Navbar = () => {
             </li>
           </ul>
           <ul className="flex items-center hidden space-x-8 lg:flex">
-          <li>
+
+           {
+            user?.uid ? 
+            <>
+            <p>{user?.photoURL ? user?.photoURL : <FaUser></FaUser> }</p>
+            <button onClick={handlelogOut} >Logout</button>
+            </>
+            :
+            <>
+             <li>
               <Link
                 to='/login'
                 className="inline-flex items-center justify-center h-12 px-4 font-medium tracking-wide text-orange-500 transition duration-200" 
@@ -71,6 +94,9 @@ const Navbar = () => {
                 Sign up
               </Link>
             </li>
+            </>
+           }
+          
             
           </ul>
           <div className="lg:hidden">
