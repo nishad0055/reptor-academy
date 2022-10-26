@@ -1,15 +1,22 @@
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React from 'react';
+import { useState } from 'react';
 import { useContext } from 'react';
 import {FaFacebook, FaGoogle, FaGithub} from 'react-icons/fa'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 
 const Login = () => {
-    const {signIn , googleSignIn} = useContext(AuthContext)
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
+    const [error, setError] = useState('')
+    const {signIn , googleSignIn , githubSignIn} = useContext(AuthContext)
     const provider = new GoogleAuthProvider()
+    const Gitprovider = new GithubAuthProvider();
      
     const handleSubmit = (event) =>{
+       
          event.preventDefault();
          const form = event.target;
          const email = form.email.value;
@@ -20,9 +27,15 @@ const Login = () => {
          .then(result => {
             const user = result.user;
             console.log(user)
+            setError('');
             form.reset()
+            navigate(from ,{replace:true})
+            
          })
-         .catch(error => console.error(error))
+         .catch(error => {
+            console.error(error)
+            setError(error.message)
+         })
 
     }
     const handleGoogleSignIn = () =>{
@@ -30,8 +43,19 @@ const Login = () => {
         .then(result => {
             const user = result.user;
             console.log(user)
+            navigate(from, {replace:true})
         })
-        .catch(e => console.error(e))
+        .catch(e => {
+            console.error(e)
+        })  
+    }
+    const handleGithub = () =>{
+         githubSignIn(Gitprovider)
+         .then(()=>{
+            navigate(from, {replace:true})
+
+         })
+         .catch(error=> console.error(error))
     }
       
     return (
@@ -47,10 +71,12 @@ const Login = () => {
                 <button className='bg-blue-600 w-full p-2 my-2 rounded-lg text-white text-xl font-bold' >Log in</button>
                 < hr className='mt-4' />
                 <p className='or'> OR </p> 
+                <p className='text-red-500' >{error}</p>
+
             </form>
             <div className='flex items-center justify-center'>
                       <button onClick={handleGoogleSignIn} className='btn-social'><FaGoogle></FaGoogle></button>
-                      <button className='btn-social'><FaGithub></FaGithub>   </button>
+                      <button  onClick={handleGithub} className='btn-social'><FaGithub></FaGithub>   </button>
                       <button className='btn-social'> <FaFacebook></FaFacebook> </button>
                     </div>
                     <p className='text-lg my-2' > Are you new User Please? <Link className='text-red-500' to='/register'>Sign Up</Link> </p>

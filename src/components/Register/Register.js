@@ -1,27 +1,32 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './Register.css'
 import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa'
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 
 const Register = () => {
-    const {createUser, googleSignIn} = useContext(AuthContext)
+    const [error, setError] = useState('')
+    const {createUser, googleSignIn, githubSignIn} = useContext(AuthContext)
     const provider = new GoogleAuthProvider();
+    const Gitprovider = new GithubAuthProvider();
     const handleSubmit =(event) => {
        event.preventDefault();
        const form = event.target;
        const name = form.name.value;
        const email = form.email.value;
        const password = form.password.value;
-       console.log(name, email, password)
        createUser(email, password)
        .then(result => {
         const user = result.user;
         console.log(user)
+        setError('')
         form.reset()
        })
-       .catch(error => console.log(error))
+       .catch(error => {
+        console.error(error)
+        setError(error.message)
+       })
     }
     const handleGoogle = () =>{
         googleSignIn(provider)
@@ -30,6 +35,14 @@ const Register = () => {
             console.log(user)
         })
         .catch(e => console.error(e))
+    }
+    const handleGithub =() =>{
+         githubSignIn(Gitprovider)
+         .then(result =>{
+            const user = result.user;
+            console.log(user)
+         })
+         .catch(e=> console.error(e))
     }
     return (
         <div className='sign-up-form lg:w-[30%] mx-auto bg-base-100 shadow-lg p-3 md:my-10 my-2' >
@@ -45,11 +58,12 @@ const Register = () => {
                 <button className='bg-blue-600 w-full p-2 my-2 rounded-lg text-white text-xl font-bold' >Sign Up</button>
                 < hr className='mt-4' />
                 <p className='or'> OR </p>
+                <p className='text-red-500 mt-1'>{error}</p>
                     
             </form>
             <div className='flex items-center justify-center'>
                       <button onClick={handleGoogle} className='btn-social'><FaGoogle></FaGoogle></button>
-                      <button className='btn-social'><FaGithub></FaGithub>   </button>
+                      <button onClick={handleGithub} className='btn-social'><FaGithub></FaGithub>   </button>
                       <button className='btn-social'> <FaFacebook></FaFacebook> </button>
                     </div>
                     <p className='text-lg my-2' >Already have an Account ? <Link className='text-red-500' to='/login'>Sign in</Link> </p>

@@ -33,7 +33,7 @@ const CourseDetails = () => {
                 </div>
                 <div className="card-actions justify-end">
                 <button className="btn btn-warning"> <Link className='text-white'>DownLoad Pdf</Link> </button>   
-                <button className="btn btn-warning"> <Link className='text-white'>Get Premium Access</Link> </button>
+                <button className="btn btn-warning"> <Link to='/checkout' className='text-white'>Get Premium Access</Link> </button>
                 </div>
             </div>
             </div>
