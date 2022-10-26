@@ -32,8 +32,8 @@ const CourseDetails = () => {
                  <p className='' ><small>{instructor.title}</small></p>
                 </div>
                 <div className="card-actions justify-end">
-                <button className="btn btn-primary"> <Link>DownLoad Pdf</Link> </button>   
-                <button className="btn btn-primary"> <Link>Get Premium Access</Link> </button>
+                <button className="btn btn-warning"> <Link className='text-white'>DownLoad Pdf</Link> </button>   
+                <button className="btn btn-warning"> <Link className='text-white'>Get Premium Access</Link> </button>
                 </div>
             </div>
             </div>

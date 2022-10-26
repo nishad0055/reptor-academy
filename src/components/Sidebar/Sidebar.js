@@ -11,7 +11,7 @@ const Sidebar = () => {
         .then(data => setCategories(data))
     }, [])
     return (
-        <div>
+        <div className='my-7 md:fixed'>
             {
                 categories.map(category => <ul key={category.id} className="menu bg-base-200 w-45">
                 <li> <Link to = {`/category/${category.id}`}>{category.name}</Link> </li>
