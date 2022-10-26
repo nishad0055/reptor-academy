@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import CourseDetails from '../CourseDetails/CourseDetails';
 
 const CourseCard = ({course}) => {
-    const {title, image_url, rating,instructor} = course
+    const {title, image_url, rating,instructor , _id} = course
 
     return (
         <div>
-             <Link to= {`/course-details/${course._id}`}>
+             <Link to= {`/course-details/${_id}`}>
              <div className="card h-full md:w-80 bg-base-100 shadow-xl">
                 <figure><img className='h-[180px] w-[320px]' src= {image_url} alt="" /></figure>
                 <div className="card-body">

@@ -1,15 +1,15 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
-import CourseCard from '../CourseCard/CourseCard';
+
 
 const CourseDetails = () => {
-    const details = useLoaderData();
+    const courseDetails = useLoaderData();
+    const {title, details, image_url , instructor, duration , lecture, chapter, rating} = courseDetails;
+    console.log(details)
     return (
-        <div>
+        <div  className='container mx-auto my-5 flex'>
           {
-            details.map(course=> <CourseCard
-            course={course}
-            ></CourseCard>)
+            <h3>{title}</h3>
           }
         </div>
     );
