@@ -14,7 +14,7 @@ const Sidebar = () => {
         <div>
             {
                 categories.map(category => <ul key={category.id} className="menu bg-base-200 w-45">
-                <li> <Link>{category.name}</Link> </li>
+                <li> <Link to = {`/category/${category.id}`}>{category.name}</Link> </li>
               </ul>
                 )
             }
