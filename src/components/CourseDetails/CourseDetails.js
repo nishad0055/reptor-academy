@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { FaStar,  FaStarHalfAlt } from 'react-icons/fa'
+import Pdf from "react-to-pdf";
+
+const ref = React.createRef();
 
 
 const CourseDetails = () => {
@@ -8,11 +11,13 @@ const CourseDetails = () => {
     const {title, details, image_url , instructor, duration , lecture, chapter, rating , _id} = courseDetails;
    
     return (
-        <div  className='container mx-auto my-5 flex'>
+        <div ref={ref} className='container mx-auto my-5 flex'>
           <div className="card lg:card-side bg-base-100 shadow-xl">
             <figure><img className='w-[400px]' src= {image_url} alt="/"/></figure>
             <div className="card-body">
-                
+            <Pdf targetRef={ref} filename="code-example.pdf">
+               {({ toPdf }) => <button className='text-red-500' onClick={toPdf}>Download Pdf</button>}
+                </Pdf>  
                 <h2 className="card-title">{title}</h2>
                 <div>
                      <p className='text-gray-500'><span> Course Duration: {duration}</span> | <span>{chapter} Chapter</span> | <span>{lecture} Lecture.</span> </p>
@@ -32,7 +37,6 @@ const CourseDetails = () => {
                  <p className='' ><small>{instructor.title}</small></p>
                 </div>
                 <div className="card-actions justify-end">
-                <button className="btn btn-warning"> <Link className='text-white'>DownLoad Pdf</Link> </button>   
                 <button className="btn btn-warning"> <Link to= {`/checkout/${_id}`} className='text-white'>Get Premium Access</Link> </button>
                 </div>
             </div>
