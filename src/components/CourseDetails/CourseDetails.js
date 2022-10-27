@@ -5,7 +5,7 @@ import { FaStar,  FaStarHalfAlt } from 'react-icons/fa'
 
 const CourseDetails = () => {
     const courseDetails = useLoaderData();
-    const {title, details, image_url , instructor, duration , lecture, chapter, rating} = courseDetails;
+    const {title, details, image_url , instructor, duration , lecture, chapter, rating , _id} = courseDetails;
    
     return (
         <div  className='container mx-auto my-5 flex'>
@@ -33,7 +33,7 @@ const CourseDetails = () => {
                 </div>
                 <div className="card-actions justify-end">
                 <button className="btn btn-warning"> <Link className='text-white'>DownLoad Pdf</Link> </button>   
-                <button className="btn btn-warning"> <Link to='/checkout' className='text-white'>Get Premium Access</Link> </button>
+                <button className="btn btn-warning"> <Link to= {`/checkout/${_id}`} className='text-white'>Get Premium Access</Link> </button>
                 </div>
             </div>
             </div>

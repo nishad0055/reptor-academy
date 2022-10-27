@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import Blog from "../../components/Blog/Blog";
 import Category from "../../components/Category/Category";
 import CheckOut from "../../components/CheckOut/CheckOut";
 import CourseDetails from "../../components/CourseDetails/CourseDetails";
@@ -16,8 +17,11 @@ export const router = createBrowserRouter([
             path: '/', element:<Home></Home>
         },
         {
-            path: '/courses', element: <PrivateRoute><Courses></Courses></PrivateRoute>,
-            loader: () => fetch('http://localhost:5000/courses')
+            path: '/courses', element: <Courses></Courses>,
+            loader: () => fetch('https://assignment-ten-server-psi.vercel.app/courses')
+        },
+        {
+           path: '/blog', element: <Blog></Blog>
         },
         {
             path: '/login', element: <Login></Login>
@@ -27,14 +31,15 @@ export const router = createBrowserRouter([
         },
         {
             path: '/category/:id', element: <Category></Category>,
-            loader: ({params})=> fetch(`http://localhost:5000/category/${params.id}`)
+            loader: ({params})=> fetch(`https://assignment-ten-server-psi.vercel.app/category/${params.id}`)
         },
         {
             path: '/course-details/:id', element: <CourseDetails></CourseDetails>,
-            loader: ({params}) => fetch(`http://localhost:5000/course-details/${params.id}`)
+            loader: ({params}) => fetch(`https://assignment-ten-server-psi.vercel.app/course-details/${params.id}`)
         },
         {
-            path: '/checkout', element: <CheckOut></CheckOut>
+            path: '/checkout/:id', element: <PrivateRoute><CheckOut></CheckOut></PrivateRoute>,
+            loader:({params}) => fetch(`https://assignment-ten-server-psi.vercel.app/course-details/${params.id}`)
         }
         
     ]

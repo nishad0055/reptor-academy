@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Sidebar = () => {
     const [categories, setCategories] = useState([])
     useEffect(()=>{
-        fetch('http://localhost:5000/category')
+        fetch('https://assignment-ten-server-psi.vercel.app/category')
         .then(res => res.json())
         .then(data => setCategories(data))
     }, [])

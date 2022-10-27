@@ -1,30 +1,13 @@
 import React from 'react';
+import { useLoaderData } from 'react-router-dom';
 import './CheckOut.css'
 
 const CheckOut = () => {
+    const checkout = useLoaderData()
+    const {title,} = checkout
     return (
          <div>
-             <form action="">
-             <div className="container">
-             <div className="row">
-                 <div className="col">
-                    <h3 className="title">Billing Information</h3>
-                    <div className="input-box">
-                        <span>Full Name:</span>
-                        <input type="text" placeholder='' />
-                    </div>
-                    <div className="input-box">
-                        <span>Email:</span>
-                        <input type="email" placeholder='' />
-                    </div>
-                    <div className="input-box">
-                        <span>City:</span>
-                        <input type="text" placeholder='' />
-                    </div>
-                 </div>
-             </div>
-         </div>
-             </form>
+             <h1 className='text-center text-5xl font-bold my-8' >{title}</h1>
          </div>
     );
 };

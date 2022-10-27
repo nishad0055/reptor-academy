@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import { FaUser } from 'react-icons/fa'
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -74,7 +76,7 @@ const Navbar = () => {
            {
             user?.uid ? 
             <>
-            <p>{user?.photoURL ? <img className='h-[40px] rounded-full' src= {user?.photoURL} alt="" /> : <FaUser></FaUser> }</p>
+            <p>{user?.photoURL ? <Tippy content={user?.displayName} ><img className='h-[40px] rounded-full' src= {user?.photoURL} alt="" /></Tippy> : <FaUser></FaUser> }</p>
             <button className='text-white' onClick={handlelogOut}  >Logout</button>
             </>
             :
