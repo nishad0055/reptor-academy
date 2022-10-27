@@ -1,4 +1,6 @@
+import { async } from "@firebase/util";
 import { createBrowserRouter } from "react-router-dom";
+import About from "../../components/About/About";
 import Blog from "../../components/Blog/Blog";
 import Category from "../../components/Category/Category";
 import CheckOut from "../../components/CheckOut/CheckOut";
@@ -40,6 +42,9 @@ export const router = createBrowserRouter([
         {
             path: '/checkout/:id', element: <PrivateRoute><CheckOut></CheckOut></PrivateRoute>,
             loader:({params}) => fetch(`https://assignment-ten-server-psi.vercel.app/course-details/${params.id}`)
+        },
+        {
+            path:'/about', element: <About></About>
         }
         
     ]

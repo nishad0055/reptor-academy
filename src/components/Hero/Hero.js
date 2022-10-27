@@ -14,7 +14,7 @@ const Hero = () => {
                     <button className='btn btn-warning md:my-2' ><Link to ='/courses' >Get Started</Link> </button>
                 </div>
                  <div className="hero-img">
-                     <img className='' src= {home} alt="" />
+                     <img className='md:h-[550px]' src= {home} alt="" />
                  </div>
             </div> 
         </div>
