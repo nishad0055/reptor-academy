@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_apiKey,
-  authDomain:process.env.REACT_APP_authDomain,
-  projectId: process.env.REACT_APP_projectId,
-  storageBucket: process.env.REACT_APP_storageBucket,
-  messagingSenderId: process.env.REACT_APP_messagingSenderId,
-  appId: process.env.REACT_APP_appId
+  apiKey: "AIzaSyDCG1tbzn0qFreKR2RmcqCQYFTFPb-pf4U",
+  authDomain: "brain-power-auth.firebaseapp.com",
+  projectId: "brain-power-auth",
+  storageBucket: "brain-power-auth.appspot.com",
+  messagingSenderId: "1035425852922",
+  appId: "1:1035425852922:web:614e10b25b10a7931bc843"
 };
 
 // Initialize Firebase
