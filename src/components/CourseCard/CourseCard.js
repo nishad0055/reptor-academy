@@ -9,7 +9,7 @@ const CourseCard = ({course}) => {
     return (
         <div>
              <Link to= {`/course-details/${_id}`}>
-             <div className="card h-full md:w-80 bg-base-100 shadow-xl">
+             <div className="card h-full  bg-base-100 shadow-md">
                 <figure><img className='h-[180px] w-[320px]' src= {image_url} alt="" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">

@@ -6,7 +6,7 @@ import Sidebar from '../Sidebar/Sidebar';
 const Category = () => {
     const category = useLoaderData();
     return (
-        <div className='md:grid grid-cols-12 container mx-auto gap-7 ' >
+        <div className='md:grid grid-cols-12 mx-2 gap-7 ' >
         <div className='col-span-2'>
            <Sidebar></Sidebar>
         </div>

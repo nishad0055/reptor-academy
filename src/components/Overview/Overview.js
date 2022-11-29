@@ -1,51 +1,67 @@
 import React from 'react';
-import course  from '../../asset/images/online-course.png'
-import mentor from '../../asset/images/mentorship.png'
-import student from '../../asset/images/male-student.png'
+import { FaBusinessTime, FaCamera, FaCode, FaDatabase, FaGraduationCap, FaLanguage, FaLaptopCode, FaRegFileCode } from 'react-icons/fa'
+import OverviewCard from './OverviewCard';
+
 const Overview = () => {
-    return (
-        <div className='container mx-auto my-10 p-3'>
-            <div className='gap-5 row-gap-5 md:grid grid-cols-3 '>
-            <div className="relative text-center bg-purple-600 rounded-md">
-          <div className="flex items-center justify-center  mx-auto rounded-full  sm:w-20 sm:h-20">
-        <img src= {course} alt="" />
-          </div>
-          <p className="max-w-md mb-3 text-2xl font-bold text-white sm:mx-auto p-1">
-             200 + Premium and Free Online Courses Available
-          </p>
-         
-          <div className="top-0 right-0 flex items-center justify-center h-24 lg:-mr-8 lg:absolute">
-            
-          </div>
-        </div>
-        <div className="relative text-center bg-purple-600 rounded-md">
-          <div className="flex items-center justify-center  mx-auto rounded-full  sm:w-20 sm:h-20">
-        <img src= {mentor} alt="" />
-          </div>
-          <p className="max-w-md mb-3 text-2xl font-bold text-white sm:mx-auto p-1">
-             100 + Experienced and expert mentors
-          </p>
-         
-          <div className="top-0 right-0 flex items-center justify-center h-24 lg:-mr-8 lg:absolute">
-            
-          </div>
-        </div>
-        <div className="relative text-center bg-purple-600 rounded-md">
-          <div className="flex items-center justify-center  mx-auto rounded-full  sm:w-20 sm:h-20">
-        <img src= {student} alt="" />
-          </div>
-          <p className="max-w-md mb-3 text-2xl font-bold text-white sm:mx-auto p-1">
-             Daily 10 Hourse Student Live Support
-          </p>
-         
-          <div className="top-0 right-0 flex items-center justify-center h-24 lg:-mr-8 lg:absolute">
-            
-          </div>
-        </div>
-                
-            </div>
-        </div>
-    );
+
+  const categoriesDate = [
+    { id:1,
+      icon: <FaLaptopCode size={60}/>,
+      name:'Web Design'
+    },
+    {
+      id: 2,
+      icon: <FaCode size={60}/>,
+      name:'Programming'
+    },
+    {
+      id: 3,
+      icon: <FaRegFileCode size={60}/>,
+      name:'Software Development'
+    },
+    {
+      id:4,
+      icon: <FaGraduationCap size={60}/>,
+      name:'Professional Skills'
+    },
+    {
+      id:5,
+      icon: <FaLanguage size={60}/>,
+      name:'Language Course'
+    },
+    {
+      id:6,
+      icon: <FaDatabase size={60}/>,
+      name:'Database Development'
+    },
+    {
+      id:7,
+      icon: <FaBusinessTime size={60}/>,
+      name:'Business'
+    },
+    {
+      id: 8,
+      icon: <FaCamera size={60}/>,
+      name:'Photography'
+    }
+  ]
+
+  return (
+    <div className='my-20 bg-base-200 lg:p-12' >
+         <div className='text-center'>
+            <p className='text-[#FC7A0E]' >CATEGORIES</p>
+            <h2 className='text-5xl font-bold font-serif' >Popular Categories</h2>
+         </div>
+         <div className='grid grid-cols-1 md:grid-cols-4 gap-6 container mx-auto mt-12 '>
+           {
+            categoriesDate.map(cat=> <OverviewCard 
+              key={cat.id}
+              cat={cat}
+            ></OverviewCard>)
+           }
+         </div>
+    </div>
+  );
 };
 
 export default Overview;
